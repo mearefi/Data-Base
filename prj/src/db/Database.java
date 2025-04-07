@@ -10,7 +10,7 @@ public class Database {
     private Database() {}
 
     public static void add(Entity entity) {
-        Entity entityCopy = entity.copy(); // کپی می‌کنیم
+        Entity entityCopy = entity.copy();
         entityCopy.id = nextId;
         nextId++;
         entities.add(entityCopy);
@@ -19,7 +19,7 @@ public class Database {
     public static Entity get(int id) {
         for (Entity entity : entities) {
             if (entity.id == id) {
-                return entity.copy(); // کپی برمی‌گردونیم
+                return entity.copy();
             }
         }
         throw new EntityNotFoundException(id);
@@ -38,7 +38,7 @@ public class Database {
     public static void update(Entity entity) {
         for (int i = 0; i < entities.size(); i++) {
             if (entities.get(i).id == entity.id) {
-                entities.set(i, entity.copy()); // کپی رو جایگزین می‌کنیم
+                entities.set(i, entity.copy());
                 return;
             }
         }
