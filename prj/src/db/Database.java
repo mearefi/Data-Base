@@ -9,11 +9,12 @@ public class Database {
 
     private Database() {}
 
-    public static void add(Entity entity) {
+    public static int add(Entity entity) {
         Entity entityCopy = entity.copy();
         entityCopy.id = nextId;
         nextId++;
         entities.add(entityCopy);
+        return entityCopy.id;
     }
 
     public static Entity get(int id) {
