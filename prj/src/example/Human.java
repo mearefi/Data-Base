@@ -2,6 +2,7 @@ package example;
 import db.Entity;
 
 public class Human extends Entity {
+    public static final int HUMAN_ENTITY_CODE = 14;
     public String name;
     public int age;
 
@@ -15,5 +16,10 @@ public class Human extends Entity {
         Human copyHuman = new Human(name, age);
         copyHuman.id = id;
         return copyHuman;
+    }
+
+    @Override
+    public int getEntityCode() {
+        return HUMAN_ENTITY_CODE;
     }
 }
