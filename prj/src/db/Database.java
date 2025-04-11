@@ -2,6 +2,7 @@ package db;
 import db.exception.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Date;
 
 public class Database {
     private static final ArrayList<Entity> entities = new ArrayList<>();
@@ -25,6 +26,12 @@ public class Database {
         Entity entityCopy = entity.copy();
         entityCopy.id = nextId;
         nextId++;
+        if (entityCopy instanceof Trackable) {
+            Trackable trackable = (Trackable) entityCopy;
+            Date now = new Date();
+            trackable.setCreationDate(now);
+            trackable.setLastModificationDate(now);
+        }
         entities.add(entityCopy);
         return entityCopy.id;
     }
@@ -55,7 +62,12 @@ public class Database {
         }
         for (int i = 0; i < entities.size(); i++) {
             if (entities.get(i).id == entity.id) {
-                entities.set(i, entity.copy());
+                Entity entityCopy = entity.copy();
+                if (entityCopy instanceof Trackable) {
+                    Trackable trackable = (Trackable) entityCopy;
+                    trackable.setLastModificationDate(new Date());
+                }
+                entities.set(i, entityCopy);
                 return;
             }
         }
