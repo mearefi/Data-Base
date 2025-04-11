@@ -54,4 +54,10 @@ public class Task extends Entity implements Trackable {
     public Date getLastModificationDate() {
         return lastModificationDate;
     }
+
+    public enum Status {
+        NotStarted,
+        InProgress,
+        Completed
+    }
 }
