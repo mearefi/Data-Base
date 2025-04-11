@@ -13,4 +13,22 @@ public class Step extends Entity {
         this.taskRef = taskRef;
         this.status = Status.NotStarted;
     }
+
+    @Override
+    public Entity copy() {
+        Step copyStep = new Step(title, taskRef);
+        copyStep.id = id;
+        copyStep.status = status;
+        return copyStep;
+    }
+
+    @Override
+    public int getEntityCode() {
+        return STEP_ENTITY_CODE;
+    }
+
+    public enum Status {
+        NotStarted,
+        Completed
+    }
 }
